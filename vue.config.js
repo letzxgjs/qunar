@@ -5,6 +5,9 @@ function resolve(dir) {
 }
 module.exports = {
   lintOnSave: true,
+  configureWebpack: {
+    devtool: 'cheap-module-eval-source-map'
+  },
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
