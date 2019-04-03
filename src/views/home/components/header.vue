@@ -5,8 +5,7 @@
     </div>
     <div class="header-search">
       <div class="input">
-        <i class="iconfont">&#xe615;</i>
-        输入城市/景点/游玩主题
+        <i class="iconfont">&#xe615;</i>输入城市/景点/游玩主题
       </div>
     </div>
     <div class="header-right">
@@ -43,18 +42,18 @@ export default {}
 
   .header-search {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 0.1rem;
 
     .input {
       width: 100%;
-      height: 0.5rem;
-      line-height: 0.5rem;
-      padding: 0 10px;
-      margin: 10px 0;
+      height: 0.56rem;
+      line-height: 0.56rem;
+      padding: 0 0.2rem;
+      margin: 0.16rem 0;
       box-sizing: border-box;
       background-color: #fff;
       border-radius: 0.06rem;
-      color: #888;
+      color: #ccc;
     }
   }
 
