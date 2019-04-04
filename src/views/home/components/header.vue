@@ -8,15 +8,24 @@
         <i class="iconfont">&#xe615;</i>输入城市/景点/游玩主题
       </div>
     </div>
-    <div class="header-right">
-      上海
+    <div class="header-right" @click="goToCity">
+      {{ city }}
       <i class="iconfont">&#xe64a;</i>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    city: String
+  },
+  methods: {
+    goToCity() {
+      this.$router.push({ name: 'city' })
+    }
+  }
+}
 </script>
 
 <style lang='stylus' scoped>
@@ -24,8 +33,8 @@ export default {}
 @import '~@style/variables.styl';
 
 .header {
-  height: 0.86rem;
-  line-height: 0.86rem;
+  height: $headerHeight;
+  line-height: $headerHeight;
   display: flex;
   color: #fff;
   background-color: $bgColor;

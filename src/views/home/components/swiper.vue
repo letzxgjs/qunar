@@ -44,7 +44,7 @@ export default {
   width: 100%;
   height: 0;
   overflow: hidden;
-  padding-bottom: 26.67%;
+  padding-bottom: 31.25%;
 
   img {
     width: 100%;

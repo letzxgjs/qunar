@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header></home-header>
+    <home-header :city="city"></home-header>
     <home-swiper :swiperList="swiper"></home-swiper>
     <home-icons :icons="icons8"></home-icons>
     <home-recommend :recommendList="rec"></home-recommend>
@@ -18,6 +18,7 @@ import HomeWeekend from './components/weekend'
 export default {
   data() {
     return {
+      city: '',
       swiper: [],
       end: [],
       icons8: [],
@@ -29,8 +30,10 @@ export default {
       axios.get('api/index.json').then(this.getHomeDataSucc)
     },
     getHomeDataSucc(res) {
-      if (res.data.ret === true) {
-        let data = res.data.data
+      res = res.data
+      if (res.ret === true) {
+        this.city = res.city
+        let data = res.data
         this.swiper = data.swiperList
         this.end = data.weekendList
         this.rec = data.recommendList
