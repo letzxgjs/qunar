@@ -1,8 +1,8 @@
 <template>
   <div class="wrap">
     <div class="wrap-head">热门推荐</div>
-    <div class="recommend border-bottom" v-for="recommend in recommendes" :key="recommend.id">
-      <img class="recommend-img" :src="recommend.src">
+    <div class="recommend border-bottom" v-for="recommend in recommendList" :key="recommend.id">
+      <img class="recommend-img" :src="recommend.imgUrl">
       <div class="recommend-details">
         <p class="title">{{ recommend.title }}</p>
         <p class="desc">{{ recommend.desc }}</p>
@@ -15,31 +15,10 @@
 <script>
 export default {
   data() {
-    return {
-      recommendes: [
-        {
-          id: '001',
-          src:
-            'http://img1.qunarzz.com/sight/p0/1903/e0/e0e0c6ca274ad49aa3.img.jpg_200x200_0f072efb.jpg',
-          title: '西溪国家湿地公园',
-          desc: '美人心计美若仙境人杰地灵西溪国家湿地公园·周家村'
-        },
-        {
-          id: '002',
-          src:
-            'http://img1.qunarzz.com/sight/p0/1603/ef/ef59eec58fbf55d90.water.jpg_200x200_4733b471.jpg',
-          title: '浙江大峡谷',
-          desc: '惊险刺激惊心动魄'
-        },
-        {
-          id: '003',
-          src:
-            'http://img1.qunarzz.com/sight/p0/1901/8c/8c1d317bc954ce06a3.water.jpg_200x200_94fd133d.jpg',
-          title: '宋城千古情',
-          desc: '世界三大名秀之一, 杭州宋城之魂'
-        }
-      ]
-    }
+    return {}
+  },
+  props: {
+    recommendList: Array
   }
 }
 </script>

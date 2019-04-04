@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
     <div class="wrap-head">周末去哪儿</div>
-    <div class="recommend border-bottom" v-for="recommend in recommendes" :key="recommend.id">
+    <div class="recommend border-bottom" v-for="recommend in weekendList" :key="recommend.id">
       <div class="img-wrap">
-        <img class="recommend-img" :src="recommend.src">
+        <img class="recommend-img" :src="recommend.imgUrl">
       </div>
       <div class="recommend-details">
         <p class="title">{{ recommend.title }}</p>
@@ -16,31 +16,10 @@
 <script>
 export default {
   data() {
-    return {
-      recommendes: [
-        {
-          id: '001',
-          src:
-            'http://img1.qunarzz.com/sight/source/1811/52/b6776b49d27025.jpg_r_640x214_35ae205c.jpg',
-          title: '西溪国家湿地公园',
-          desc: '美人心计美若仙境人杰地灵西溪国家湿地公园·周家村'
-        },
-        {
-          id: '002',
-          src:
-            'http://img1.qunarzz.com/sight/source/1811/52/b6776b49d27025.jpg_r_640x214_35ae205c.jpg',
-          title: '浙江大峡谷',
-          desc: '惊险刺激惊心动魄'
-        },
-        {
-          id: '003',
-          src:
-            'http://img1.qunarzz.com/sight/source/1811/52/b6776b49d27025.jpg_r_640x214_35ae205c.jpg',
-          title: '宋城千古情',
-          desc: '世界三大名秀之一, 杭州宋城之魂'
-        }
-      ]
-    }
+    return {}
+  },
+  props: {
+    weekendList: Array
   }
 }
 </script>

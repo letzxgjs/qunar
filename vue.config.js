@@ -14,5 +14,15 @@ module.exports = {
       .set('@assets', resolve('src/assets'))
       .set('@style', resolve('src/assets/styles'))
     // 这里只写了两个个，你可以自己再加，按这种格式.set('', resolve(''))
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080/',
+        pathRewrite: {
+          '^/api': '/static/mock'
+        }
+      }
+    }
   }
 }
