@@ -24,6 +24,11 @@
         </div>
       </div>
     </div>
+    <div class="search-results" v-if="searchInput">
+      <div class="item-list">
+        <div class="item border-bottom" v-for="city of results" :key="city.id">{{ city.name }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,10 +37,16 @@ import Bscroll from 'better-scroll'
 // import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
+  data() {
+    return {
+      results: []
+    }
+  },
   props: {
     hot: Array,
     cities: Object,
-    letter: String
+    letter: String,
+    searchInput: String
   },
   // computed: {
   //   ...mapState({
@@ -53,6 +64,18 @@ export default {
     letter() {
       const element = this.$refs[this.letter][0]
       this.scroll.scrollToElement(element)
+    },
+    searchInput(keyword) {
+      let result = []
+      for (let key in this.cities) {
+        cities[key].forEach((city, index) => {
+          if (~city.spell.indexOf(keyword)) {
+            result.push(city)
+          }
+        })
+      }
+      console.log(result)
+      this.results = result
     }
   },
   mounted() {

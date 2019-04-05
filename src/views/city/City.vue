@@ -1,10 +1,11 @@
 <template>
   <div>
     <city-header></city-header>
-    <city-search></city-search>
+    <city-search @text-input="xinput($event)" :cities="cities"></city-search>
     <city-list :hot="hotCities" :cities="cities" :letter="letter"></city-list>
     <city-alphabet
       :cities="cities"
+      :searchInput="searchText"
       @letter-click="handleLetterClick($event)"
       @change="handleLetterClick($event)"
     ></city-alphabet>
@@ -22,7 +23,8 @@ export default {
     return {
       letter: 'A',
       hotCities: [],
-      cities: {}
+      cities: {},
+      searchText: ''
     }
   },
   methods: {
@@ -39,8 +41,10 @@ export default {
     },
     handleLetterClick(event) {
       this.letter = event
+    },
+    xinput(e) {
+      this.searchText = e
     }
-    // touchLetter(event) {}
   },
   mounted() {
     this.getCities()
