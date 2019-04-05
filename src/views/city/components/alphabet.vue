@@ -1,26 +1,72 @@
 <template>
   <ul class="list">
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
-    <li class="item">A</li>
+    <li
+      class="item"
+      v-for="item in letters"
+      :key="item"
+      :ref="item"
+      @click="clickLetter"
+      @touchstart="xtouchstart"
+      @touchmove="xtouchmove"
+      @touchend="xtouchend"
+    >{{item}}</li>
   </ul>
 </template>
 
 <script>
-export default {}
+//import { clearTimeout } from 'timers'
+export default {
+  data() {
+    return {
+      touching: false,
+      startY: 0,
+      timer: null
+    }
+  },
+  props: {
+    cities: Object
+  },
+  computed: {
+    letters() {
+      const letters = []
+      for (let i in this.cities) {
+        letters.push(i)
+      }
+      return letters
+    }
+  },
+  updated() {
+    this.startY = this.$refs['A'][0].offsetTop
+  },
+  methods: {
+    clickLetter(e) {
+      this.$emit('letter-click', e.target.innerHTML)
+    },
+    xtouchstart() {
+      this.touching = true
+    },
+    xtouchmove(e) {
+      if (this.touching) {
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY - 79
+          const index = Math.floor((touchY - this.startY) / 20)
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('change', this.letters[index])
+          }
+        }, 16)
+      }
+    },
+    xtouchend() {
+      this.touching = true
+    }
+  }
+}
 </script>
 
-<style lang='stylus' scoped>
+<style lang="stylus" scoped>
 @import '~@style/variables.styl';
 
 .list {
@@ -34,7 +80,7 @@ export default {}
   bottom: 0;
 
   .item {
-    height: 0.36rem;
+    height: 0.4rem;
     text-align: center;
     color: $bgColor;
   }
