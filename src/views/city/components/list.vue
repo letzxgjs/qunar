@@ -5,7 +5,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{currentCity}}</div>
           </div>
         </div>
       </div>
@@ -13,20 +13,30 @@
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
           <div class="button-wrapper" v-for="city in hot" :key="city.id">
-            <div class="button">{{ city.name }}</div>
+            <div class="button" @click="clickCity(city.name)">{{ city.name }}</div>
           </div>
         </div>
       </div>
       <div class="area" v-for="(value, key) in cities" :key="key">
         <div class="title border-topbottom" :ref="key">{{ key }}</div>
         <div class="item-list">
-          <div class="item border-bottom" v-for="city of value" :key="city.id">{{ city.name }}</div>
+          <div
+            class="item border-bottom"
+            v-for="city of value"
+            :key="city.id"
+            @click="clickCity(city.name)"
+          >{{ city.name }}</div>
         </div>
       </div>
     </div>
     <div class="search-results" v-if="searchInput">
       <div class="item-list">
-        <div class="item border-bottom" v-for="city of results" :key="city.id">{{ city.name }}</div>
+        <div
+          class="item border-bottom"
+          v-for="city of results"
+          :key="city.id"
+          @click="clickCity(city.name)"
+        >{{ city.name }}</div>
       </div>
     </div>
   </div>
@@ -34,7 +44,7 @@
 
 <script>
 import Bscroll from 'better-scroll'
-// import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   data() {
@@ -48,38 +58,28 @@ export default {
     letter: String,
     searchInput: String
   },
-  // computed: {
-  //   ...mapState({
-  //     currentCity: 'city'
-  //   })
-  // },
-  // methods: {
-  //   handleCityClick (city) {
-  //     this.changeCity(city)
-  //     this.$router.push('/')
-  //   },
-  //   ...mapMutations(['changeCity'])
-  // },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  },
+  methods: {
+    clickCity(city) {
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  },
   watch: {
     letter() {
       const element = this.$refs[this.letter][0]
       this.scroll.scrollToElement(element)
-    },
-    searchInput(keyword) {
-      let result = []
-      for (let key in this.cities) {
-        cities[key].forEach((city, index) => {
-          if (~city.spell.indexOf(keyword)) {
-            result.push(city)
-          }
-        })
-      }
-      console.log(result)
-      this.results = result
     }
   },
   mounted() {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    this.$nextTick(() => {
+      this.scroll = new Bscroll(this.$refs.wrapper)
+    })
   }
 }
 </script>

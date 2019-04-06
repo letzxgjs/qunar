@@ -3,7 +3,7 @@
     <div class="city-search">
       <input type="text" class="search-input" placeholder="输入城市名称/拼音" v-model="keyword">
     </div>
-    <div class="results" v-show="keyword" ref="wrapper">
+    <div class="results" v-show="keyword" ref="search">
       <ul>
         <li class="item border-bottom" v-for="city in results" :key="city.id">{{city.name}}</li>
         <li class="item border-bottom" v-show="!results.length">没有匹配的城市</li>
@@ -37,10 +37,13 @@ export default {
         }
         this.results = result
       }
+      // this.scroll.refresh()
     }
   },
   mounted() {
-    this.scroll = new Bscroll(this.$refs.wrapper)
+    this.$nextTick(() => {
+      this.scroll = new Bscroll(this.$refs.search)
+    })
   }
 }
 </script>
@@ -67,12 +70,15 @@ export default {
 }
 
 .results {
-  width: 100%;
-  min-height: 100%;
+  // width: 100%;
+  // min-height: 100%;
+  overflow: hidden;
   position: absolute;
   top: 1.58rem;
+  bottom: 0;
   left: 0;
-  background-color: #ee0;
+  right: 0;
+  background-color: #eee;
   z-index: 22;
 
   .item {

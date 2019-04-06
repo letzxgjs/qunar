@@ -1,10 +1,17 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    city: window.localStorage.getItem('city') || '广丰'
+  },
+  mutations: {
+    changeCity(state, city) {
+      state.city = city
+      window.localStorage.setItem('city', city)
+    }
+  },
   actions: {}
-});
+})

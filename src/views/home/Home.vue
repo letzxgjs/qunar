@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :swiperList="swiper"></home-swiper>
     <home-icons :icons="icons8"></home-icons>
     <home-recommend :recommendList="rec"></home-recommend>
@@ -10,6 +10,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 import HomeHeader from './components/header'
 import HomeSwiper from './components/swiper'
 import HomeIcons from './components/icons'
@@ -18,21 +19,23 @@ import HomeWeekend from './components/weekend'
 export default {
   data() {
     return {
-      city: '',
+      lastCity: '',
       swiper: [],
       end: [],
       icons8: [],
       rec: []
     }
   },
+  computed: {
+    ...mapState(['city'])
+  },
   methods: {
     getHomePageData() {
-      axios.get('api/index.json').then(this.getHomeDataSucc)
+      axios.get('api/index.json?city=' + this.city).then(this.getHomeDataSucc)
     },
     getHomeDataSucc(res) {
       res = res.data
       if (res.ret === true) {
-        this.city = res.city
         let data = res.data
         this.swiper = data.swiperList
         this.end = data.weekendList
@@ -43,6 +46,7 @@ export default {
   },
   mounted() {
     this.getHomePageData()
+    this.lastCity = this.city
   },
   components: {
     HomeHeader,
@@ -50,9 +54,14 @@ export default {
     HomeIcons,
     HomeRecommend,
     HomeWeekend
+  },
+  activated() {
+    if (this.lastCity != this.city) {
+      this.getHomePageData()
+      this.lastCity = this.city
+    }
   }
 }
 </script>
 
-<style lang='stylus' scoped>
-</style>
+<style lang='stylus' scoped></style>

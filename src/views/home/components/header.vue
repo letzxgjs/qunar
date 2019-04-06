@@ -16,9 +16,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: {
-    city: String
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     goToCity() {
@@ -67,7 +68,7 @@ export default {
   }
 
   .header-right {
-    width: 1.24rem;
+    min-width: 1.24rem;
     text-align: center;
     // flex: auto;
   }
