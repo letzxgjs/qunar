@@ -1,7 +1,12 @@
 <template>
   <div class="wrap">
     <div class="wrap-head">热门推荐</div>
-    <div class="recommend border-bottom" v-for="recommend in recommendList" :key="recommend.id">
+    <div
+      class="recommend border-bottom"
+      v-for="recommend in recommendList"
+      :key="recommend.id"
+      @click="seeDetail(recommend.id)"
+    >
       <img class="recommend-img" :src="recommend.imgUrl">
       <div class="recommend-details">
         <p class="title">{{ recommend.title }}</p>
@@ -19,6 +24,11 @@ export default {
   },
   props: {
     recommendList: Array
+  },
+  methods: {
+    seeDetail(id) {
+      this.$router.push({ name: 'details', params: { id } })
+    }
   }
 }
 </script>
