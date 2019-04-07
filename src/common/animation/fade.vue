@@ -1,0 +1,21 @@
+<template>
+  <transition>
+    <slot></slot>
+  </transition>
+</template>
+
+<script>
+export default {
+  name: 'AnimationFade'
+}
+</script>
+
+<style lang='stylus' scoped>
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
+
+.v-enter-active, .v-leave-active {
+  transition: all 1s;
+}
+</style>

@@ -21,19 +21,15 @@ export default {
         pagination: {
           el: '.swiper-pagination',
           type: 'fraction'
-        }
+        },
+        observeParents: true,
+        observer: true
       },
       swiperList: []
     }
   },
   props: {
-    imgs: {
-      type: Array,
-      default: [
-        'http://img1.qunarzz.com/sight/p0/1810/a2/a26fda89eb2cd667a3.water.jpg_r_800x800_932ee710.jpg',
-        'http://img1.qunarzz.com/sight/p0/1810/2f/2f98abdae7315ea9a3.water.jpg_r_800x800_00450d96.jpg'
-      ]
-    }
+    imgs: Array
   }
 }
 </script>

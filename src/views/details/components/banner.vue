@@ -1,32 +1,33 @@
 <template>
   <div>
     <div class="banner" @click="showGallarySwitch">
-      <img
-        class="banner-img"
-        src="http://img1.qunarzz.com/sight/p0/201408/14/bc6bb9a732c8832cc302641c8527a040.jpg_600x330_93bf6a40.jpg"
-      >
+      <img class="banner-img" :src="bannerImg">
       <div class="banner-info">
         <div class="banner-number">
           <i class="iconfont">&#xe6dd;</i> 9
         </div>
-        <div class="banner-title">杭州乐园(AAAA景区)</div>
+        <div class="banner-title">{{sightName}}</div>
       </div>
     </div>
-    <banner-gallary :imgs="imgs" v-if="showGallary" @click.native="showGallarySwitch"></banner-gallary>
+    <animation-fade>
+      <banner-gallary :imgs="imgs" v-if="showGallary" @click.native="showGallarySwitch"></banner-gallary>
+    </animation-fade>
   </div>
 </template>
 
 <script>
-import BannerGallary from '@gallary/gallary.vue'
+import BannerGallary from '@common/gallary/gallary.vue'
+import AnimationFade from '@common/animation/fade.vue'
 export default {
   data() {
     return {
-      showGallary: false,
-      imgs: [
-        'http://img1.qunarzz.com/sight/p0/1810/14/14d9f4b3b0f66f3ba3.water.jpg_r_800x800_f0f4fba8.jpg',
-        'http://img1.qunarzz.com/sight/p0/201408/14/bc6bb9a732c8832cc302641c8527a040.jpg_r_800x800_f9bd2f7f.jpg'
-      ]
+      showGallary: false
     }
+  },
+  props: {
+    bannerImg: String,
+    imgs: Array,
+    sightName: String
   },
   methods: {
     showGallarySwitch() {
@@ -34,7 +35,8 @@ export default {
     }
   },
   components: {
-    BannerGallary
+    BannerGallary,
+    AnimationFade
   }
 }
 </script>
