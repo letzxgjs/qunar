@@ -37,7 +37,6 @@ export default {
       res = res.data
       if (res.ret == true && res.data) {
         let data = res.data
-        console.log(data.bannerImg)
         this.tickets = data.categoryList
         this.bannerImg = data.bannerImg
         this.imgs = data.gallaryImgs

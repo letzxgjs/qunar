@@ -2,7 +2,7 @@
   <div class="head">
     城市选择
     <div class="city-back" @click="goHome">
-      <i class="iconfont">&#xe61e;</i>
+      <i class="iconfont icon-back">&#xe61e;</i>
     </div>
   </div>
 </template>
@@ -36,6 +36,10 @@ export default {
     top: 0;
     left: 0;
     color: #fff;
+
+    .icon-back {
+      font-size: 0.4rem;
+    }
   }
 }
 </style>

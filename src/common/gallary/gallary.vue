@@ -65,7 +65,7 @@ export default {
     .swiper-pagination {
       color: #fff;
       // position: absolute;
-      bottom: -2rem;
+      bottom: -1rem;
       // z-index: 99;
     }
   }

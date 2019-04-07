@@ -4,7 +4,8 @@
       <img class="banner-img" :src="bannerImg">
       <div class="banner-info">
         <div class="banner-number">
-          <i class="iconfont">&#xe6dd;</i> 9
+          <i class="iconfont">&#xe6dd;</i>
+          {{imgs.length}}
         </div>
         <div class="banner-title">{{sightName}}</div>
       </div>

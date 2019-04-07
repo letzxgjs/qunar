@@ -29,7 +29,6 @@ export default {
       this.$router.push('/')
     },
     scrollHead() {
-      console.log(123)
       let scrollY = document.documentElement.scrollTop
       if (scrollY > 60) {
         this.showAbs = false
