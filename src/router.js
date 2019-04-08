@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home/Home.vue'
-import City from './views/city/City.vue'
-import Details from './views/details/Details.vue'
+// import Home from './views/home/Home.vue'
+// import City from './views/city/City.vue'
+// import Details from './views/details/Details.vue'
 
 Vue.use(Router)
 
@@ -11,17 +11,17 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: () => import('@/views/home/Home')
     },
     {
       path: '/city',
       name: 'city',
-      component: City
+      component: () => import('@/views/city/City')
     },
     {
       path: '/details/:id',
       name: 'details',
-      component: Details
+      component: () => import('@/views/details/Details')
     }
     // {
     //   path: "/about",
@@ -33,7 +33,9 @@ export default new Router({
     //     import(/* webpackChunkName: "about" */ "./views/About.vue")
     // }
   ],
+  /* eslint-disable no-unused-vars */
   scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
+  /* eslint-disable no-unused-vars */
 })
